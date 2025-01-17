@@ -3,16 +3,27 @@
 // First point of entry
 // Initialise the server
 // Get the port
-// Tell the server to listen to the incoming traffic
+// Tell the server to listen to incoming traffic
 
 // Server is configured in this file
+
+require("dotenv").config();
+
 const { app } = require("./server.js");
+const { dbConnect } = require("./utils/database.js");
 
 // Get the PORT
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 8008;
 
 // Listen to the PORT
-app.listen(PORT, () => {
+
+// dbConnect().then(()=>{
+//     app.listen();
+// })
+
+app.listen(PORT, async () => {
     // Server is running at this point
-    console.log("Server is running on port: " + PORT)
-})
+    await dbConnect();
+
+    console.log("Server is running on port: " + PORT);
+});
