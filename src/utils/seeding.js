@@ -1,6 +1,6 @@
 // Seed values into the database
 
-const { createPost } = require("../controllers/PostController");
+const { createPost, getPost, getPosts } = require("../controllers/PostController");
 const { dbConnect, dbDisconnect } = require("./database");
 
 async function seed() {
@@ -8,6 +8,9 @@ async function seed() {
     console.log("Connected to the Database. Seeding now...");
 
     await createPost("Important Post", "This is really important!");
+
+    let getPostResult = await getPost({title: "Important Post"});
+    console.log(getPostResult.content)
 
     console.log("Seeding complete. Disconnecting...");
 

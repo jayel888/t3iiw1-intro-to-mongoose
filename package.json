@@ -4,7 +4,12 @@
   "description": "- MongooseJS mongosh - mongo shell mongod - Mongo service daemon mongos - sharding or clustering for mongodb",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch src/index.js"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/utils/seeding.js",
+    "start:seed": "npm run seed && npm start",
+    "db:drop": "node src/utils/dropping.js",
+    "db:drop-and-seed": "npm run db:drop && npm run seed"
   },
   "keywords": [],
   "author": "",
