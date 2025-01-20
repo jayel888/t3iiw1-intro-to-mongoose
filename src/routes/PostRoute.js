@@ -5,6 +5,21 @@ const router = express.Router();
 
 // Create Post
 
+// Get posts based on query
+router.get("/search/query", async (request, response) => {
+    // Get the query from the request body
+    let query = request.body.query;
+    
+    // Use the query in the POST CRUD operation
+    let result = await getPost(query);
+
+    // Return the result
+    response.json({
+        data: result
+    });
+});
+
+
 // Get one post by ID
 router.get("/search/:postId", async (request, response) => {
     console.log("Getting post with ID: " + request.params.postId);
@@ -27,6 +42,6 @@ router.get("/all", async (request, response) => {
     })
 })
 
-// Get many posts
+
 
 module.exports = router;
