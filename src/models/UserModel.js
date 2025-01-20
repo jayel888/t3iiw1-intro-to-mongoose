@@ -7,30 +7,33 @@ const mongoose = require("mongoose");
 //     minLength: 10
 // })
 // const simpleSchema = new mongoose.Schema(objDefiningDataRules, SchemaOptions);
-const PostSchema = new mongoose.Schema({
-    title: {
+const UserSchema = new mongoose.Schema({
+    username: {
         type: String,
         required: true,
-        minLength: 10,
-        unique: true
+        minLength: 5,
+        unique: true,
+        trim: true
     },
-    content: String,
-    date: {
-        type: Date,
-        default: Date.now
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        minLength: 5
     },
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+    isOver18: {
+        type: Boolean,
+        required: true,
+        default: false
     }
-});
+    });
 
 // Make a model based on the schema
-const PostModel = mongoose.model("Post", PostSchema);
+const UserModel = mongoose.model("User", UserSchema);
 // Mongoose automatically looks for a collection with the plural lowercase name 'posts'
 
 // Export the model for accessibility in other parts of the code
 module.exports = {
-    PostModel
+    UserModel
 }
