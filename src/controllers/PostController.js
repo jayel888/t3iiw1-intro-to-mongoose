@@ -15,7 +15,7 @@ async function createPost(title, content, authorId) {
 
 async function getPost(query) {
     // let result = await PostModel.findOne({key: value})
-    let result = await PostModel.findOne(query);
+    let result = await PostModel.findOne(query).populate("author");
 
     return result;
 }
