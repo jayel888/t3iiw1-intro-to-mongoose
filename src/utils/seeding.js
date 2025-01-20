@@ -8,6 +8,7 @@ async function seed() {
     console.log("Connected to the Database. Seeding now...");
 
     await createPost("Important Post", "This is really important!");
+    await createPost("Not so important Post", "This is really not important!");
 
     let getPostResult = await getPost({title: "Important Post"});
     console.log(getPostResult.content)

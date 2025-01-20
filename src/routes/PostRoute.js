@@ -1,5 +1,5 @@
 const express = require("express");
-const { getPost } = require("../controllers/PostController");
+const { getPost, getPosts } = require("../controllers/PostController");
 
 const router = express.Router();
 
@@ -18,7 +18,15 @@ router.get("/search/:postId", async (request, response) => {
 });
 
 // Get all posts
+router.get("/all", async (request, response) => {
+    let result = await getPosts({});
+    console.log("All posts: " + JSON.stringify(result));
+
+    response.json({
+        data: result
+    })
+})
 
 // Get many posts
 
-module.exports = router
+module.exports = router;
